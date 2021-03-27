@@ -15,14 +15,14 @@ namespace SpaceInvaders.API
         {
             var client = new RestClient(baseURL);
             string requestUrl = $"http://swapi.dev/api/people/?search={input}";
-            APIResponseTraveller response;
+            APIResponse<Person> response;
             List<Person> persons = new List<Person>();
 
             while (requestUrl != null)
             {
                 string resource = requestUrl.Substring(baseURL.Length);
                 var request = new RestRequest(resource, DataFormat.Json);
-                response = await client.GetAsync<APIResponseTraveller>(request);
+                response = await client.GetAsync<APIResponse<Person>>(request);
 
                 persons.AddRange(response.Results);
                 requestUrl = response.Next;
@@ -35,14 +35,14 @@ namespace SpaceInvaders.API
         {
             var client = new RestClient(baseURL);
             string requestUrl = "http://swapi.dev/api/starships/";
-            APIResponseStarships response;
+            APIResponse<Starships> response;
             List<Starships> starships = new List<Starships>();
 
             while (requestUrl != null)
             {
                 string resource = requestUrl.Substring(baseURL.Length);
                 var request = new RestRequest(resource, DataFormat.Json);
-                response = await client.GetAsync<APIResponseStarships>(request);
+                response = await client.GetAsync<APIResponse<Starships>>(request);
 
                 starships.AddRange(response.Results);
                 requestUrl = response.Next;
