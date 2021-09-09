@@ -1,7 +1,7 @@
 name: dotnet package
-defaults: 
-  run: 
-    working-directory: source
+# defaults: 
+#  run: 
+#    working-directory: source
 on: [push]
 
 jobs:
