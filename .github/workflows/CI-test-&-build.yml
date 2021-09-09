@@ -1,7 +1,7 @@
 name: dotnet package
-# defaults: 
-#  run: 
-#    working-directory: source
+defaults: 
+  run: 
+    working-directory: Source
 on: [push]
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: ls
+        run: dotnet restore 
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Test
